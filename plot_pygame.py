@@ -8,8 +8,8 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
 logger.info("Program started")
 
-def square(x):
-    return x ** 2
+def sine(x):
+    return math.sin(x)
 
 pygame.init()
 
@@ -30,11 +30,13 @@ while running:
     screen.fill((0, 0, 0))
 
     for x in range(0, 600):
-        x_real = 0.00668 * x - 2
-        y_real = (square(x_real))
-        y = int(-74.875 * y_real +299.5)
+        x_real = x / 49.917 - 299
+        y_real = (sine(x_real))
+        y = int(299.5 * y_real +299.5)
         screen.set_at((int(x), int(y)), (255, 255, 255))
-        # pygame.draw.line(screen, (0, 255, 0), (10, 10), (300, 300))
+        if x > 0:
+            pygame.draw.line(screen, (255, 255, 255), (x, y), (x, y0))
+        y0 = y
 
     pygame.display.flip()
 
