@@ -8,6 +8,9 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
 logger.info("Program started")
 
+def square(x):
+    return x ** 2
+
 pygame.init()
 
 w = 600
@@ -26,10 +29,11 @@ while running:
 
     screen.fill((0, 0, 0))
 
-    for x in range(w):
-        x = w - x
-        y = h - x
-        screen.set_at((x, y), (255, 255, 255))
+    for x in range(0, 600):
+        x_real = 0.00668 * x - 2
+        y_real = (square(x_real))
+        y = int(-74.875 * y_real +299.5)
+        screen.set_at((int(x), int(y)), (255, 255, 255))
         # pygame.draw.line(screen, (0, 255, 0), (10, 10), (300, 300))
 
     pygame.display.flip()
